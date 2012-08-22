@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+	
+	<ui:param name="activeMenu" value="questionnaires" />
+
+	<ui:define name="content">		
+		
+		<h2>Questionnaires</h2>
+		<h:panelGroup rendered="#{empty questionnaires}">
+		</h:panelGroup>
+		<h:dataTable var="_questionnaire" value="#{questionnaires}"
+			rendered="#{not empty members}" styleClass="table table-striped table-hover">
+			<h:column>
+				<f:facet name="header">Id</f:facet>
+                #{_questionnaire.id}
+            </h:column>
+			<h:column>
+				<f:facet name="header">Name</f:facet>
+                #{_questionnaire.name}
+            </h:column>
+			<h:column>
+				<f:facet name="header">REST URL</f:facet>
+				<a href="#{request.contextPath}/rest/questionnaires/#{_questionnaire.id}">/rest/questionnaires/#{_questionnaire.id}</a>
+			</h:column>
+			<f:facet name="footer">
+            REST URL for all questionnaires: <a
+					href="#{request.contextPath}/rest/questionnaires">/rest/questionnaires</a>
+			</f:facet>
+		</h:dataTable>
+	</ui:define>
+</ui:composition>

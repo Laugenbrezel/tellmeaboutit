@@ -8,11 +8,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<h:outputStylesheet name="css/bootstrap.min.css" />
 	<style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-    </style>
+body {
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
+</style>
 	<h:outputStylesheet name="css/bootstrap-responsive.min.css" />
 
 	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -31,18 +31,23 @@
 				</a> <a class="brand" href="#">Tell me 'bout it!</a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li class="active"><a href="#">Home</a></li>
+						<li class="#{activeMenu eq 'home' ? 'active' : ''}">
+							<h:link outcome="/index.jsf">Home</h:link>
+						</li>
 						<li><a href="#about">About</a></li>
 						<li><a href="#contact">Contact</a></li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+						<li class="dropdown #{activeMenu eq 'questionnaires' ? 'active' : ''}">
+							<a href= "#" class="dropdown-toggle"
+							data-toggle="dropdown">Questionnaires <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Action</a></li>
-								<li><a href="#">Another action</a></li>
-								<li><a href="#">Something else here</a></li>
+								<li>
+									<h:link outcome="/questionnaires.jsf">List by name</h:link>
+								</li>
 								<li class="divider"></li>
-								<li class="nav-header">Nav header</li>
-								<li><a href="#">Separated link</a></li>
+								<li class="nav-header">Administer</li>
+								<li>
+									<h:link outcome="/questionnaire.jsf">Create new</h:link>
+								</li>
 								<li><a href="#">One more separated link</a></li>
 							</ul></li>
 					</ul>
@@ -61,7 +66,7 @@
 
 		<!-- Main hero unit for a primary marketing message or call to action -->
 		<ui:insert name="hero-unit" />
-		
+
 		<!-- Example row of columns -->
 		<div class="row">
 			<ui:insert name="content" />
@@ -79,6 +84,7 @@
 	<!-- Le javascript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
+	<h:outputScript name="js/jquery.min.js" />
 	<h:outputScript name="js/bootstrap.min.js" />
 </h:body>
 </html>
